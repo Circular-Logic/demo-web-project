@@ -36,6 +36,11 @@ public class WebController {
 	 */
 	@Autowired
 	private UserManager userManager;	
+	
+	@RequestMapping(value = "/cs580/a3", method = RequestMethod.GET)
+	String assignment3(){
+		return "Oh man this works yay!";
+	}
 
 	/**
 	 * This is a simple example of how the HTTP API works.
