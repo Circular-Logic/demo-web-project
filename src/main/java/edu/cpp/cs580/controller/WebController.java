@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import edu.cpp.cs580.App;
+import edu.cpp.cs580.data.GPSItem;
 import edu.cpp.cs580.data.User;
 import edu.cpp.cs580.data.provider.UserManager;
 
@@ -35,7 +36,12 @@ public class WebController {
 	 * the {@link App} class.
 	 */
 	@Autowired
-	private UserManager userManager;	
+	private UserManager userManager;
+	
+	@RequestMapping(value="/price/gps/list", method = RequestMethod.GET)
+	List<GPSItem> listALLGPSInfo(){
+		return null;
+	}
 	
 	@RequestMapping(value = "/cs580/a3", method = RequestMethod.GET)
 	String assignment3(){
