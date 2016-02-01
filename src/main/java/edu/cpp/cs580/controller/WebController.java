@@ -1,7 +1,11 @@
 package edu.cpp.cs580.controller;
 
+import java.io.IOException;
 import java.util.List;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -46,6 +50,14 @@ public class WebController {
 	@RequestMapping(value = "/cs580/a3", method = RequestMethod.GET)
 	String assignment3(){
 		return "Oh man this works yay!";
+	}
+	
+	//assignment 4 for cs 580
+	@RequestMapping(value = "/cs580/a4", method = RequestMethod.GET)
+	String assignment4() throws IOException{
+		Document doc = Jsoup.connect("http://www.yelp.com/search?find_desc=tacos&find_loc=pomona%2C+ca&ns=1").get();
+		Element link = doc.select("a").first();
+		return link.attr("href");
 	}
 
 	/**
