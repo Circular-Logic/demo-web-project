@@ -113,8 +113,8 @@ public class WebController {
 	 */
 	@RequestMapping(value = "/cs580/user/{userId}", method = RequestMethod.POST)
 	User updateUser(
-			@PathVariable("Cesar") String id,
-			@RequestParam("Cesar") String name,
+			@PathVariable("userId") String id,
+			@RequestParam("name") String name,
 			@RequestParam(value = "major", required = false) String major) {
 		User user = new User();
 		user.setId(id);
