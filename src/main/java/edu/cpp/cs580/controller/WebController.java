@@ -6,6 +6,7 @@ import java.util.List;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
+import org.apache.commons.math3.stat.regression.SimpleRegression;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -112,8 +113,8 @@ public class WebController {
 	 */
 	@RequestMapping(value = "/cs580/user/{userId}", method = RequestMethod.POST)
 	User updateUser(
-			@PathVariable("userId") String id,
-			@RequestParam("name") String name,
+			@PathVariable("Cesar") String id,
+			@RequestParam("Cesar") String name,
 			@RequestParam(value = "major", required = false) String major) {
 		User user = new User();
 		user.setId(id);
@@ -155,5 +156,31 @@ public class WebController {
 		modelAndView.addObject("users", listAllUsers());
 		return modelAndView;
 	}
+	
+	//assignment 4 for cs 580
+	 	@RequestMapping(value = "/cs580/a4/Cesar", method = RequestMethod.GET)
+	 	String assign4(){
+	 	        // creating regression object, passing true to have intercept term
+	 	        SimpleRegression simpleRegression = new SimpleRegression(true);
+
+	 	        // passing data to the model
+	 	        // model will be fitted automatically by the class 
+	 	        simpleRegression.addData(new double[][] {
+	 	                {1, 2},
+	 	                {2, 3},
+	 	                {3, 4},
+	 	                {4, 5},
+	 	                {5, 6}
+	 	        });
+
+	 	        // querying for model parameters
+	 	        System.out.println("slope = " + simpleRegression.getSlope());
+	 	        System.out.println("intercept = " + simpleRegression.getIntercept());
+
+	 	        // trying to run model for unknown data
+	 	        System.out.println("prediction for 1.5 = " + simpleRegression.predict(1.5));
+				return "slope = " + simpleRegression.getSlope() + " intercept = " + simpleRegression.getIntercept()+
+						" prediction for 1.5 = " + simpleRegression.predict(1.5);
+	 	}
 
 }
